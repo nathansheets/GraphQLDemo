@@ -1,3 +1,5 @@
+const { authors, books } = require('./sampleInfo.js');
+
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const { 
