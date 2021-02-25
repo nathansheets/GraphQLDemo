@@ -1,5 +1,4 @@
 const { authors, books } = require('./sampleInfo.js');
-
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const { 
@@ -46,7 +45,7 @@ const BookType = new GraphQLObjectType({
     })
   })
 
-// Define API endpoints
+// Define API query endpoints
 const RootQueryType = new GraphQLObjectType({
     name: 'Query',
     description: 'Root Query',
@@ -80,6 +79,7 @@ const RootQueryType = new GraphQLObjectType({
     })
 });
 
+// Define API mutation endpoints
 const RootMutationType = new GraphQLObjectType({
     name: 'Mutation',
     description: 'Root mutation',
@@ -123,12 +123,13 @@ const schema = new GraphQLSchema({
     mutation: RootMutationType
 });
 
-const PORT = 5000;
+// Enable GUI via Graphiql
 app.use('/graphql', graphqlHTTP({
     schema: schema,
     graphiql: true
 }))
 
+const PORT = 5000;
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
 });
